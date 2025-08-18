@@ -1,0 +1,78 @@
+/* 기본 세팅 */
+body {
+    margin: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #f9f9fb;
+    color: #333;
+}
+
+/* 네비게이션 */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #4f46e5, #3b82f6);
+    padding: 12px 24px;
+    color: white;
+}
+
+.navbar .brand {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+}
+
+.navbar nav a {
+    margin-left: 15px;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: opacity 0.2s;
+}
+
+.navbar nav a:hover {
+    opacity: 0.7;
+}
+
+.logout-btn {
+    background: #ef4444;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 15px;
+    transition: background 0.3s;
+}
+
+.logout-btn:hover {
+    background: #dc2626;
+}
+
+/* 메인 */
+.main-container {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.main-container h1 {
+    font-size: 2.5em;
+    color: #1f2937;
+    margin-bottom: 10px;
+}
+
+.main-container p {
+    font-size: 1.2em;
+    color: #6b7280;
+}
+
+/* 푸터 */
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 60px;
+    font-size: 0.9em;
+    color: #9ca3af;
+}
