@@ -1,0 +1,86 @@
+/* 메인 컨테이너 */
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 60px 20px;
+}
+
+/* 카드 박스 */
+.article-box {
+    max-width: 800px;
+    width: 100%;
+    background: #fff;
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    text-align: left;
+}
+
+/* 제목 */
+.article-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 12px;
+}
+
+/* 메타정보 */
+.article-meta {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-bottom: 20px;
+}
+
+/* 본문 */
+.article-content {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #374151;
+    margin-bottom: 30px;
+    white-space: pre-line; /* 줄바꿈 유지 */
+}
+
+/* 액션 버튼 */
+.article-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+/* 버튼 공통 */
+.btn {
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    border: none;
+}
+
+/* 버튼 스타일 */
+.btn-primary {
+    background: linear-gradient(90deg, #4f46e5, #3b82f6);
+    color: white;
+}
+.btn-primary:hover { opacity: 0.9; }
+
+.btn-secondary {
+    background: #f3f4f6;
+    color: #1f2937;
+}
+.btn-secondary:hover { background: #e5e7eb; }
+
+.btn-danger {
+    background: #ef4444;
+    color: white;
+}
+.btn-danger:hover { background: #dc2626; }
+
+/* 반응형 */
+@media (max-width: 640px) {
+    .article-box { padding: 20px; }
+    .article-title { font-size: 1.6rem; }
+    .article-actions { flex-direction: column; }
+}

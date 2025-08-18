@@ -12,6 +12,10 @@
 #    port: 8080
 
 spring:
+
+  thymeleaf:
+    cache: false
+
   jpa:
     open-in-view: false
     properties:
@@ -29,3 +33,7 @@ spring:
 
 server:
   port: ${PORT:8080}
+
+logging:
+  level:
+    org.thymeleaf: DEBUG
