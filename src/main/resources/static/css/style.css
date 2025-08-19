@@ -1,3 +1,8 @@
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 /* ===========================
    ✅ 홈 화면 전용 스타일
    =========================== */
@@ -6,24 +11,79 @@ body.home {
 }
 
 .main-container.home {
+    display: flex;
+    flex-direction: column; /* 세로 배치 */
+    align-items: center;
     text-align: center;
-    margin: 6rem auto;
+
+    margin: 4rem auto;
     padding: 3rem;
-    background: #ffffff; /* 흰색 카드 */
+    background: #ffffff;
     border-radius: 12px;
     max-width: 800px;
+    width: 100%;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    gap: 1rem; /* 요소 간 간격 */
 }
 
 .main-container.home h1 {
     font-size: 2.4rem;
-    margin-bottom: 1rem;
-    color: #1e3a8a; /* 진한 블루 */
+    margin: 0;
+    color: #1e3a8a;
 }
 
 .main-container.home p {
     font-size: 1.2rem;
     color: #334155;
+    margin: 0;
+}
+
+
+/* ===========================
+   ✅ 전체 레이아웃
+   =========================== */
+html, body {
+   height: 100%;
+   margin: 0;
+   display: flex;
+   flex-direction: column;
+}
+
+main {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 기본: 위쪽 정렬 */
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+/* 홈 화면만 가운데 카드 */
+body.home main {
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+/* 카드 공통 */
+.container {
+    width: 100%;
+    max-width: 900px;
+    margin: 2rem auto;
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    display:block;
+}
+
+/* footer */
+footer {
+    background: #f8f9fa;
+    text-align: center;
+    padding: 1rem;
+    margin-top: auto;
 }
 
 /* ===========================
@@ -42,34 +102,10 @@ body.home {
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background: white;   /* 흰 원 배경 */
-    padding: 4px;        /* 여백 */
+    background: white;
+    padding: 4px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1),
-                0 0 8px rgba(79,110,247,0.6); /* 파란빛 글로우 */
-}
-
-/* ===========================
-   ✅ 전체 레이아웃
-   =========================== */
-body {
-    margin: 0;
-    font-family: 'Noto Sans KR', sans-serif;
-    background-color: #f7f9fc;
-    color: #333;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.container {
-    max-width: 900px;
-    margin: 2rem auto;
-    padding: 1.5rem;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+                0 0 8px rgba(79,110,247,0.6);
 }
 
 /* ===========================
@@ -79,16 +115,15 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(90deg, #1e3a8a, #3b82f6); /* 네이비 → 블루 투톤 */
+    background: linear-gradient(90deg, #1e3a8a, #3b82f6);
     padding: 1rem 2rem;
     color: white;
 }
 
-/* nav 전체를 flex 정렬 */
 .header nav {
     display: flex;
     align-items: center;
-    gap: 0.8rem; /* 버튼 간격 */
+    gap: 0.8rem;
 }
 
 .header nav span {
@@ -96,7 +131,7 @@ a {
 }
 
 /* ===========================
-   ✅ 네비게이션 버튼 (a, button)
+   ✅ 네비게이션 버튼
    =========================== */
 .header nav a,
 .header nav button {
@@ -104,8 +139,8 @@ a {
     justify-content: center;
     align-items: center;
 
-    width: 90px;   /* 버튼 폭 고정 */
-    height: 42px;  /* 버튼 높이 고정 */
+    width: 90px;
+    height: 42px;
     box-sizing: border-box;
 
     background: white;
@@ -114,14 +149,11 @@ a {
     border-radius: 6px;
     border: none;
     cursor: pointer;
-    text-align: center;
     font-family: inherit;
     font-size: 0.95rem;
-    line-height: 1;
     transition: background 0.2s, color 0.2s;
 }
 
-/* 로그아웃 form도 버튼처럼 보이게 */
 .header nav form {
     display: inline-block;
     margin: 0;
@@ -146,46 +178,47 @@ a {
     border: none;
     cursor: pointer;
     transition: 0.2s;
+    text-align: center
 }
 
-.btn.primary {
-    background: #4f6ef7;
+.btn.primary { background: #4f6ef7; color: white; }
+.btn.primary:hover { background: #3b56d9; }
+
+.btn.secondary { background: #e0e7ff; color: #334155; }
+.btn.secondary:hover { background: #c7d2fe; }
+
+.btn.danger { background: #f87171; color: white; }
+.btn.danger:
+
+
+
+.form-actions {
+    display: flex;
+    justify-content: center;   /* 📌 버튼들을 가운데 정렬 */
+    gap: 0.8rem;
+    margin-top: 1.2rem;
+}
+
+/* 소셜 로그인 버튼 전용 */
+.social-login {
+    margin-top: 1.5rem;        /* 위 버튼 그룹과 간격 */
+    display: flex;
+    justify-content: center;   /* 📌 가운데 정렬 */
+}
+
+.btn.google {
+    background: #ea4335;
     color: white;
-}
-
-.btn.primary:hover {
-    background: #3b56d9;
-}
-
-.btn.secondary {
-    background: #e0e7ff;
-    color: #334155;
-}
-
-.btn.secondary:hover {
-    background: #c7d2fe;
-}
-
-.btn.danger {
-    background: #f87171;
-    color: white;
-}
-
-.btn.danger:hover {
-    background: #ef4444;
-}
-
-.btn.small {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
-}
-
-/* ===========================
-   ✅ 푸터
-   =========================== */
-footer {
+    font-weight: 600;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    min-width: 250px;          /* 📌 일정한 크기 보장 */
     text-align: center;
-    padding: 1rem;
-    color: #888;
-    font-size: 0.8rem;
+    transition: background 0.2s;
 }
+
+.btn.google:hover {
+    background: #c1351d;
+}
+
+

@@ -7,59 +7,14 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body class="home">
-
-<header class="header">
-    <!-- 브랜드 (로고 + 이름) -->
-    <a href="/" class="brand">
-        <img src="/images/logo.png" alt="로고" class="logo">
-        MyNewBoard
-    </a>
-
-    <!-- 네비게이션 -->
-    <nav>
-        <a href="/articles">글목록</a>
-
-        <!-- 비로그인 사용자 -->
-        <span sec:authorize="isAnonymous()">
-            <a href="/login">로그인</a>
-            <a href="/join">회원가입</a>
-        </span>
-
-        <!-- 로그인 사용자 -->
-        <span sec:authorize="isAuthenticated()">
-            <span>안녕하세요, <strong th:text="${displayName}"></strong>님!</span>
-            <form method="post" action="/logout" style="display:inline; margin:0; padding:0;">
-                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-                <button type="submit">로그아웃</button>
-            </form>
-        </span>
-    </nav>
-</header>
+<div th:replace="/header :: header"></div>
 
 <main class="main-container home">
-    <!-- 원본 보존 -->
-    <h1>메인</h1>
-    <a href="/articles">글목록보기</a>
-    <span sec:authorize="isAnonymous()">
-        | <a href="/login">로그인</a>
-        | <a href="/join">회원가입</a>
-    </span>
-    <div sec:authorize="isAuthenticated()">
-        |
-        <form method="post" action="/logout" style="display:inline;">
-            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-            <button type="submit">로그아웃</button>
-        </form>
-    </div>
-
-    <!-- 꾸민 버전 추가 -->
+    <h1>MyBoard</h1>
     <h2 style="margin-top:2rem;">✨ 환영합니다 ✨</h2>
-    <p>나만의 게시판 프로젝트에 오신 걸 환영합니다!</p>
+    <p>유하의 게시판 프로젝트에 오신 걸 환영합니다!</p>
 </main>
 
-<footer>
-    <p>© 2025 MyNewBoard</p>
-</footer>
-
+<div th:replace="footer :: footer"></div>
 </body>
 </html>

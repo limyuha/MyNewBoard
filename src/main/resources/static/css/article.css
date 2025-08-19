@@ -1,61 +1,57 @@
-/* 게시글 공통 레이아웃 */
-.post, .article-box {
-    margin-top: 2rem;
+/* ===========================
+   ✅ 공통 카드 레이아웃 (상세/작성 박스만)
+   =========================== */
+.article-box,
+.form-box {
+    margin: 2rem auto;
     padding: 2rem;
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    max-width: 900px;
+    box-sizing: border-box;
 }
 
-.post-title, .article-title {
+/* 제목 스타일 */
+.article-title,
+.form-box h1 {
     text-align: center;
     margin-bottom: 1.5rem;
     font-size: 1.8rem;
-    color: #222;
+    color: #1e3a8a;
 }
 
-.post-content, .article-content {
+/* 본문 */
+.article-content {
     margin: 1.2rem 0;
     line-height: 1.6;
     font-size: 1rem;
     color: #444;
 }
 
-/* form (새 글 / 수정) */
-.form-group {
-    margin-bottom: 1.2rem;
-}
-
-.form-group label {
-    font-weight: 600;
-    display: block;
-    margin-bottom: 0.5rem;
-}
-
+/* 글 작성/수정 form */
+.form-group { margin-bottom: 1.2rem; }
+.form-group label { font-weight: 600; margin-bottom: 0.5rem; display: block; }
 input[type="text"], textarea {
-    width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 1rem;
-    background: #fafafa;
+    width: 100%; padding: 0.8rem; border: 1px solid #ddd;
+    border-radius: 8px; font-size: 1rem; background: #fafafa;
+    box-sizing: border-box;
 }
-
-textarea {
-    resize: vertical;
-}
+textarea { resize: vertical; }
 
 .form-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.5rem;
-    margin-top: 1rem;
+    display: flex; justify-content: flex-end;
+    gap: 0.5rem; margin-top: 1rem;
 }
 
-/* 게시글 목록 */
+/* ===========================
+   ✅ 게시글 목록
+   =========================== */
 .article-list-page h1 {
     margin-bottom: 1.5rem;
-    color: #1e3a8a;   /* 제목 강조 색상 */
+    color: #1e3a8a;
+    text-align: center;
+    display:block;
 }
 
 .article-list {
@@ -69,36 +65,31 @@ textarea {
     border-bottom: 1px solid #eee;
     transition: background 0.2s;
 }
-
-.article-list li:hover {
-    background: #f0f4ff; /* hover 시 배경 강조 */
-}
-
+.article-list li:hover { background: #f0f4ff; }
 .article-list li a {
     text-decoration: none;
     color: #333;
     font-weight: 500;
 }
+.article-list li a:hover { color: #4f6ef7; }
 
-.article-list li a:hover {
-    color: #4f6ef7;
-}
-
-.empty-message {
+/* 글이 없을 때 */
+.article-list-page .empty-message {
+    display: block;      /* ✅ 강제로 줄바꿈 */
     text-align: center;
     padding: 1rem;
     color: #888;
+    margin-top: 1rem;   /* 📌 목록과 여백 */
+    border: 1px dashed #ddd;
+    border-radius: 8px;
 }
 
-/* detail 버튼 영역 */
-.article-actions, .post-actions {
+
+/* 버튼 영역 */
+.article-actions,
+.form-actions {
     display: flex;
     justify-content: flex-end;
     gap: 0.5rem;
     margin-top: 1.5rem;
-}
-
-.back-link {
-    text-align: left;
-    margin-top: 1rem;
 }
