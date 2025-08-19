@@ -1,0 +1,79 @@
+/* 회원가입 & 로그인 전용 CSS */
+
+/* 폼 박스 */
+.form-box {
+    max-width: 400px;
+    margin: 60px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* 제목 */
+.form-box h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.6rem;
+    color: #1f2937;
+}
+
+/* 입력 필드 그룹 */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+/* 에러 메시지 */
+.error {
+    color: #e11d48; /* 빨강 */
+    font-size: 0.9em;
+    margin: 5px 0 10px 0;
+}
+
+/* 버튼 영역 */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.form-actions .btn {
+    flex: 1;
+    margin: 0 5px;
+}
+
+/* 구글 로그인 버튼 */
+.oauth-box {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn.google {
+    display: inline-block;
+    background: #ea4335;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.btn.google:hover {
+    background: #c1351d;
+}

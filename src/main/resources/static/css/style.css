@@ -1,78 +1,191 @@
-/* 기본 세팅 */
+/* ===========================
+   ✅ 홈 화면 전용 스타일
+   =========================== */
+body.home {
+    background: #f0f4ff; /* 연한 블루 톤 */
+}
+
+.main-container.home {
+    text-align: center;
+    margin: 6rem auto;
+    padding: 3rem;
+    background: #ffffff; /* 흰색 카드 */
+    border-radius: 12px;
+    max-width: 800px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.main-container.home h1 {
+    font-size: 2.4rem;
+    margin-bottom: 1rem;
+    color: #1e3a8a; /* 진한 블루 */
+}
+
+.main-container.home p {
+    font-size: 1.2rem;
+    color: #334155;
+}
+
+/* ===========================
+   ✅ 브랜드(로고 + 텍스트)
+   =========================== */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.brand .logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: white;   /* 흰 원 배경 */
+    padding: 4px;        /* 여백 */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1),
+                0 0 8px rgba(79,110,247,0.6); /* 파란빛 글로우 */
+}
+
+/* ===========================
+   ✅ 전체 레이아웃
+   =========================== */
 body {
     margin: 0;
     font-family: 'Noto Sans KR', sans-serif;
-    background: #f9f9fb;
+    background-color: #f7f9fc;
     color: #333;
 }
 
-/* 네비게이션 */
-.navbar {
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+/* ===========================
+   ✅ 헤더
+   =========================== */
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(90deg, #4f46e5, #3b82f6);
-    padding: 12px 24px;
+    background: linear-gradient(90deg, #1e3a8a, #3b82f6); /* 네이비 → 블루 투톤 */
+    padding: 1rem 2rem;
     color: white;
 }
 
-.navbar .brand {
-    font-size: 1.5em;
-    font-weight: bold;
-    text-decoration: none;
-    color: white;
+/* nav 전체를 flex 정렬 */
+.header nav {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem; /* 버튼 간격 */
 }
 
-.navbar nav a {
-    margin-left: 15px;
-    text-decoration: none;
-    color: white;
-    font-weight: 500;
-    transition: opacity 0.2s;
+.header nav span {
+    display: contents;
 }
 
-.navbar nav a:hover {
-    opacity: 0.7;
-}
+/* ===========================
+   ✅ 네비게이션 버튼 (a, button)
+   =========================== */
+.header nav a,
+.header nav button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-.logout-btn {
-    background: #ef4444;
-    border: none;
-    padding: 6px 12px;
+    width: 90px;   /* 버튼 폭 고정 */
+    height: 42px;  /* 버튼 높이 고정 */
+    box-sizing: border-box;
+
+    background: white;
+    color: #1e3a8a;
+    font-weight: 600;
     border-radius: 6px;
-    color: white;
+    border: none;
     cursor: pointer;
-    font-weight: bold;
-    margin-left: 15px;
-    transition: background 0.3s;
-}
-
-.logout-btn:hover {
-    background: #dc2626;
-}
-
-/* 메인 */
-.main-container {
     text-align: center;
-    padding: 80px 20px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    line-height: 1;
+    transition: background 0.2s, color 0.2s;
 }
 
-.main-container h1 {
-    font-size: 2.5em;
-    color: #1f2937;
-    margin-bottom: 10px;
+/* 로그아웃 form도 버튼처럼 보이게 */
+.header nav form {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
 }
 
-.main-container p {
-    font-size: 1.2em;
-    color: #6b7280;
+.header nav a:hover,
+.header nav button:hover {
+    background: #f0f4ff;
+    color: #2563eb;
 }
 
-/* 푸터 */
+/* ===========================
+   ✅ 공통 버튼 스타일
+   =========================== */
+.btn {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn.primary {
+    background: #4f6ef7;
+    color: white;
+}
+
+.btn.primary:hover {
+    background: #3b56d9;
+}
+
+.btn.secondary {
+    background: #e0e7ff;
+    color: #334155;
+}
+
+.btn.secondary:hover {
+    background: #c7d2fe;
+}
+
+.btn.danger {
+    background: #f87171;
+    color: white;
+}
+
+.btn.danger:hover {
+    background: #ef4444;
+}
+
+.btn.small {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+}
+
+/* ===========================
+   ✅ 푸터
+   =========================== */
 footer {
     text-align: center;
-    padding: 20px;
-    margin-top: 60px;
-    font-size: 0.9em;
-    color: #9ca3af;
+    padding: 1rem;
+    color: #888;
+    font-size: 0.8rem;
 }

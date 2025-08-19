@@ -53,26 +53,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원가입</title></head>
+    <title>회원가입</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/auth.css}">
+</head>
 <body>
-<header>
-    <a href="/" class="brand">🌀 임시로고</a>
+<header class="header">
+    <a href="/" class="brand">
+        <img src="/images/logo.png" alt="로고" class="logo">
+        MyNewBoard
+    </a>
 </header>
 
-<main>
-    <h1>회원가입</h1>
-    <form method="post" action="/join" th:object="${joinRequest}">
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-        <div><label>이메일 <input type="email" th:field="*{email}" required></label></div>
-        <div><label>이름 <input type="text" th:field="*{name}" required></label></div>
-        <div><label>비밀번호 <input type="password" th:field="*{password}" required></label></div>
+<main class="container">
+    <section class="form-box">
+        <h1>✨ 회원가입</h1>
+        <form method="post" action="/join" th:object="${joinRequest}">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 
-        <div th:if="${#fields.hasErrors('*')}" style="color:red" th:errors="*{email}"></div>
-        <div th:if="${error}" style="color:red" th:text="${error}"></div>
+            <div class="form-group">
+                <label for="email">이메일</label>
+                <input type="email" id="email" th:field="*{email}" required>
+            </div>
 
-        <button type="submit">가입</button>
-    </form>
-    <a href="/oauth2/authorization/google" class="btn btn-primary">구글로 로그인</a>
+            <div class="form-group">
+                <label for="name">이름</label>
+                <input type="text" id="name" th:field="*{name}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">비밀번호</label>
+                <input type="password" id="password" th:field="*{password}" required>
+            </div>
+
+            <div class="error" th:if="${#fields.hasErrors('*')}" th:errors="*{email}"></div>
+            <div class="error" th:if="${error}" th:text="${error}"></div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn primary">가입</button>
+                <a href="/" class="btn secondary">취소</a>
+            </div>
+        </form>
+
+        <div class="oauth-box">
+            <a href="/oauth2/authorization/google" class="btn google">구글 계정으로 가입</a>
+        </div>
+    </section>
 </main>
+
+<footer>
+    <p>© 2025 MyNewBoard</p>
+</footer>
 </body>
 </html>

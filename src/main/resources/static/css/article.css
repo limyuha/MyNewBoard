@@ -1,0 +1,104 @@
+/* 게시글 공통 레이아웃 */
+.post, .article-box {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.post-title, .article-title {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: #222;
+}
+
+.post-content, .article-content {
+    margin: 1.2rem 0;
+    line-height: 1.6;
+    font-size: 1rem;
+    color: #444;
+}
+
+/* form (새 글 / 수정) */
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"], textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #fafafa;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+/* 게시글 목록 */
+.article-list-page h1 {
+    margin-bottom: 1.5rem;
+    color: #1e3a8a;   /* 제목 강조 색상 */
+}
+
+.article-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.article-list li {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid #eee;
+    transition: background 0.2s;
+}
+
+.article-list li:hover {
+    background: #f0f4ff; /* hover 시 배경 강조 */
+}
+
+.article-list li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.article-list li a:hover {
+    color: #4f6ef7;
+}
+
+.empty-message {
+    text-align: center;
+    padding: 1rem;
+    color: #888;
+}
+
+/* detail 버튼 영역 */
+.article-actions, .post-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.back-link {
+    text-align: left;
+    margin-top: 1rem;
+}
