@@ -93,3 +93,9 @@ textarea { resize: vertical; }
     gap: 0.5rem;
     margin-top: 1.5rem;
 }
+
+.article-list li div {
+    display: inline-block;
+    float: right;
+    font-size:12px;
+}

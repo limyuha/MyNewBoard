@@ -3,6 +3,8 @@ package com.example.newboard.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -27,4 +29,14 @@ public class Article {  // 테이블과 매핑되는 그릇
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "author_id", nullable = false)
     private User author;  // User 테이블의 id와 연결되는 외래키 컬럼
+
+    // ✅ 작성일 추가
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    // 엔티티가 저장될 때 자동으로 시간 넣기
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+    }
 }

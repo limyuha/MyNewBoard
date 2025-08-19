@@ -29,6 +29,11 @@
     <ul class="article-list" th:unless="${#lists.isEmpty(articles)}">
         <li th:each="a : ${articles}">
             <a th:href="@{'/articles/' + ${a.id}}" th:text="${a.title}">제목</a>
+            <div>
+                작성일 : <span class="article-date"
+                    th:text="${#temporals.format(a.createdAt, 'yyyy-MM-dd HH:mm')}">
+                </span>
+            </div>
         </li>
     </ul>
 </main>
