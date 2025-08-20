@@ -9,7 +9,7 @@
     <link rel="stylesheet" th:href="@{/css/update_form.css}">
 </head>
 <body>
-<div th:replace="header :: header"></div>
+<div th:replace="~{header :: header}"></div>
 
 <main class="main-home">
     <section class="update_box">
@@ -35,6 +35,6 @@
     </section>
 </main>
 
-<div th:replace="footer :: footer"></div>
+<div th:replace="~{footer :: footer}"></div>
 </body>
 </html>
