@@ -13,7 +13,7 @@
 <body class="article-list-page">
 <div th:replace="~{header :: header}"></div>
 
-<main class="container">
+<main class="container article-container">
     <h1>📚 게시글 목록</h1>
 
     <!-- 새 글 작성 버튼 (로그인 사용자만 보임) -->
@@ -37,6 +37,25 @@
             </div>
         </li>
     </ul>
+
+    <!-- 페이지네이션 -->
+    <div class="pagination-container">
+        <!-- 이전 버튼 -->
+        <a th:if="${articles.hasPrevious()}"
+           th:href="@{/articles(page=${articles.number - 1}, size=${articles.size})}" class="page-btn">이전</a>
+
+        <!-- 페이지 번호 -->
+        <span th:each="pageNum : ${#numbers.sequence(0, articles.totalPages - 1)}">
+            <a th:href="@{/articles(page=${pageNum}, size=${articles.size})}"
+               th:text="${pageNum + 1}"
+               th:class="'page-btn ' + (${pageNum == articles.number} ? 'active' : '')">
+            </a>
+        </span>
+
+        <!-- 다음 버튼 -->
+        <a th:if="${articles.hasNext()}"
+           th:href="@{/articles(page=${articles.number + 1}, size=${articles.size})}" class="page-btn">다음</a>
+    </div>
 </main>
 
 <div th:replace="~{footer :: footer}"></div>

@@ -21,8 +21,9 @@ main {
 
 /* 카드 공통 */
 .container {
-    width: 100%; max-width:
-    900px; margin: 2rem auto;
+    width: 100%;
+    max-width: 900px;
+    margin: 2rem auto;
     background: #c7d2fe; /* #e0e7ff 진한 파스텔 블루 */
     border-radius: 12px;
     padding: 2rem;

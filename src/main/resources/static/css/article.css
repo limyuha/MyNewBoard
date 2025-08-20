@@ -48,23 +48,40 @@ textarea { resize: vertical; }
    ✅ 게시글 목록
    =========================== */
 .article-list-page h1 {
-    margin-bottom: 1.5rem;
-    color: #1e3a8a;
-    text-align: center;
-    display:block;
+   margin-bottom: 1.5rem;
+   color: #1e3a8a;
+   text-align: center;
+   display:block;
 }
 
+.article-container {
+   position: relative;
+   min-height: 500px;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between; /* 위(글목록) / 아래(페이지네이션) */
+}
+
+/* 글 목록 */
 .article-list {
-    list-style: none;
-    padding: 0;
-    margin: 1rem 0;
+    flex: 1; /* 위쪽을 채우고 */
+    margin-bottom: 20px;
 }
 
 .article-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 0.8rem 1rem;
     border-bottom: 1px solid #eee;
     transition: background 0.2s;
 }
+
+.article-list li div {
+    font-size: 12px;
+    color: #666;
+}
+
 .article-list li:hover { background: #f0f4ff; }
 .article-list li a {
     text-decoration: none;
@@ -84,7 +101,6 @@ textarea { resize: vertical; }
     border-radius: 8px;
 }
 
-
 /* 버튼 영역 */
 .article-actions,
 .form-actions {
@@ -94,8 +110,41 @@ textarea { resize: vertical; }
     margin-top: 1.5rem;
 }
 
-.article-list li div {
-    display: inline-block;
-    float: right;
-    font-size:12px;
+/* ===========================
+   ✅ 페이지네이션 컨테이너, 페이지네이션 (하단 고정)
+   =========================== */
+.pagination-container {
+    display: flex;
+    justify-content: center; /* 버튼 가운데 정렬 */
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: auto; /* 항상 박스 하단에 위치 */
+    padding: 10px 0;
+}
+
+/* 버튼 스타일 */
+.page-btn {
+    padding: 8px 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: white;
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+/* hover */
+.page-btn:hover {
+    background: #f0f4ff;
+    border-color: #3b82f6;
+    color: #2563eb;
+}
+
+/* 현재 페이지 */
+.page-btn.active {
+    background: #3b82f6;
+    color: white;
+    font-weight: bold;
+    border-color: #3b82f6;
 }

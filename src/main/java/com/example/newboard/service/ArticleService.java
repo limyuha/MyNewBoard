@@ -7,6 +7,8 @@ import com.example.newboard.web.dto.ArticleCreateRequest;
 import com.example.newboard.web.dto.ArticleUpdateRequest;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +20,14 @@ public class ArticleService {
     private final ArticleRepository articleRepository;
     private final UserRepository userRepository;
 
+    // 전체 목록 (기존)
     public List<Article> findAll() {
         return articleRepository.findAll();
+    }
+
+    // 페이징 + 최신순 (추가)
+    public Page<Article> findAll(Pageable pageable) {
+        return articleRepository.findAllByOrderByCreatedAtDesc(pageable);
     }
 
     @Transactional
