@@ -4,15 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>홈</title>
+    <link rel="stylesheet" th:href="@{/css/normalize.css}">
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/update_form.css}">
 </head>
-<body class="home">
+<body>
 <div th:replace="header :: header"></div>
 
-<main class="main-container home">
+<main class="main-home">
+    <section class="update_box">
+        <h2>🔔 1.1 ver</h2>
+        <p>⏳ 이번 업데이트는 최신순 정렬 예정입니다.</p>
+        <p>⏳ DB 서버 시간 확인</p>
+        <p>⏳ 댓글 기능</p>
+        <p><span class="badge">NEW</span>업데이트 UI 등록</p> <!--🆕-->
+    </section>
+
+    <section class="welcome-box">
     <h1>MyBoard</h1>
     <h2 style="margin-top:2rem;">✨ 환영합니다 ✨</h2>
     <p>유하의 게시판 프로젝트에 오신 걸 환영합니다!</p>
+    </section>
+
+    <section class="latest-posts">
+        <h2>📝 최신 글</h2>
+        <ul>
+            <li><a href="#">1. 게시판 기능 개선 예정</a> <span>2025-02-15</span></li>
+            <li><a href="#">2. UI 업데이트 완료</a> <span>2025-02-14</span></li>
+        </ul>
+    </section>
 </main>
 
 <div th:replace="footer :: footer"></div>
