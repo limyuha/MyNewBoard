@@ -9,6 +9,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,7 @@ public class ArticleService {
     }
 
     // 페이징 + 최신순 (추가)
+    @EntityGraph(attributePaths = {"author"})  // findAll 할 때 Article + User(author) 를 join 해서 한 번에 가져옴(글쓴이 가져오기위함) + N+1 문제 방지
     public Page<Article> findAll(Pageable pageable) {
         return articleRepository.findAllByOrderByCreatedAtDesc(pageable);
     }

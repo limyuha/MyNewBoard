@@ -45,106 +45,201 @@ textarea { resize: vertical; }
 }
 
 /* ===========================
-   ✅ 게시글 목록
+   📌 Article List Page 전용
+   body: <body class="article-list-page">
    =========================== */
+
+/* 페이지 제목 */
 .article-list-page h1 {
-   margin-bottom: 1.5rem;
-   color: #1e3a8a;
-   text-align: center;
-   display:block;
+    /* text-align: center;       가운데 정렬 */
+    font-size: 2rem;          /* 글자 크기 키우기 (필요시 2.2rem 정도로 더 키워도 OK) */
+    font-weight: 700;         /* 두껍게 */
+    letter-spacing: 1px;          /* 글자 간격 살짝 넓힘 */
+    margin-bottom: 1.5rem;    /* 아래 여백 */
+    color: #ffffff;           /* 흰색으로 대비 */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* 가독성 강조 */
 }
 
-.article-container {
-   position: relative;
-   min-height: 500px;
-   display: flex;
-   flex-direction: column;
-   justify-content: space-between; /* 위(글목록) / 아래(페이지네이션) */
-}
+/* 게시판 전체 영역 */
+.article-board {
+  display: flex;
+  flex-direction: column;   /* 위 → 아래 정렬 */
+  justify-content: space-between; /* 리스트 위 / 페이징 아래 */
 
-/* 글 목록 */
-.article-list {
-    flex: 1; /* 위쪽을 채우고 */
-    margin-bottom: 20px;
-}
-
-.article-list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.8rem 1rem;
-    border-bottom: 1px solid #eee;
-    transition: background 0.2s;
-}
-
-.article-list li div {
-    font-size: 12px;
-    color: #666;
-}
-
-.article-list li:hover { background: #f0f4ff; }
-.article-list li a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-}
-.article-list li a:hover { color: #4f6ef7; }
-
-/* 글이 없을 때 */
-.article-list-page .empty-message {
-    display: block;      /* ✅ 강제로 줄바꿈 */
-    text-align: center;
-    padding: 1rem;
-    color: #888;
-    margin-top: 1rem;   /* 📌 목록과 여백 */
-    border: 3px dashed #ddd;
-    border-radius: 8px;
-}
-
-/* 버튼 영역 */
-.article-actions,
-.form-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.5rem;
-    margin-top: 1.5rem;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #ffffff, #f8faff);
+  border-radius: 12px;
+  margin: 1.5rem auto;
+  max-width: 1000px;
+  height: 85%;
 }
 
 /* ===========================
-   ✅ 페이지네이션 컨테이너, 페이지네이션 (하단 고정)
+   📌 헤더 (번호 / 제목 / 글쓴이 / 작성일)
    =========================== */
-.pagination-container {
-    display: flex;
-    justify-content: center; /* 버튼 가운데 정렬 */
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: auto; /* 항상 박스 하단에 위치 */
-    padding: 10px 0;
+.article-header {
+  display: grid;
+  grid-template-columns: 80px 1fr 160px 180px; /* 번호 / 제목 / 글쓴이 / 작성일 */
+  background: linear-gradient(90deg, #3b82f6, #1e3a8a);
+  color: #fff;
+  font-weight: bold;
+  padding: 12px 16px;
 }
 
-/* 버튼 스타일 */
-.page-btn {
-    padding: 8px 14px;
-    border: 1px solid #ccc;
+.article-header .col {
+  text-align: center;
+}
+.article-header .title {
+  text-align: left;
+}
+
+/* ===========================
+   📌 목록
+   =========================== */
+.article-list {
+   flex-grow: 1;   /* 공간 차지 */
+   margin-bottom: 1rem;
+}
+
+.article-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 160px 180px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e5e7eb;
+  align-items: center;
+  background: #fff;
+  transition: background 0.2s ease;
+}
+.article-row:last-child {
+  border-bottom: none;
+}
+
+/* Hover 효과 */
+.article-row:hover {
+  background: #c7d2fe;  /* Tailwind의 indigo-200 계열 */
+  transition: background 0.2s;
+}
+
+.article-row:hover .title a {
+  color: #333;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.article-row .title a:hover {
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600; /* 강조 효과 */
+}
+
+/* 컬럼 공통 */
+.article-row .col {
+  text-align: center;
+}
+.article-row .title {
+  text-align: left;
+}
+.article-row .title a {
+  color: #1e3a8a;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.article-row .title a:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+/* 날짜 */
+.article-date {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+/* ===========================
+   📌 글이 없을 때 메시지
+   =========================== */
+.empty-message {
+    text-align: center;
+    padding: 1rem;
+    color: #888;
+    margin-top: 1rem;
+    border: 3px dashed #ddd;
     border-radius: 8px;
-    background: white;
+    background: #fafafa;
+}
+
+/* ===========================
+   📌 페이지네이션
+   =========================== */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 12px 0;
+  margin-top: auto;   /* 자동으로 하단으로 밀림 */
+  margin-bottom: 12px;   /* 하단과 살짝 띄우기 */
+}
+
+.page-btn {
+    padding: 6px 12px;
+    border: 2px solid transparent;   /* 투명한 기본 테두리 */
+    border-radius: 6px;
+    background: #fff;
     color: #333;
     font-size: 14px;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
 }
 
-/* hover */
 .page-btn:hover {
-    background: #f0f4ff;
-    border-color: #3b82f6;
-    color: #2563eb;
+  border-image: linear-gradient(90deg, #3b82f6, #2563eb) 1;
+  color: #2563eb; /* 글씨색만 블루 */
 }
 
-/* 현재 페이지 */
 .page-btn.active {
-    background: #3b82f6;
-    color: white;
+    background: linear-gradient(90deg, #2563eb, #1e3a8a);
+    color: #fff;
+    border: none;
+    font-weight: 600;
+}
+
+/* ===========================
+   📌 반응형 (모바일 대응)
+   =========================== */
+@media (max-width: 768px) {
+  .article-header {
+    display: none; /* 모바일에서는 헤더 숨김 */
+  }
+
+  .article-row {
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+  }
+
+  .article-row .num {
     font-weight: bold;
-    border-color: #3b82f6;
+    margin-bottom: 5px;
+  }
+  .article-row .title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .article-row .writer {
+    font-size: 14px;
+    color: #444;
+    margin-bottom: 3px;
+  }
+  .article-row .date {
+    font-size: 13px;
+    color: #666;
+  }
 }

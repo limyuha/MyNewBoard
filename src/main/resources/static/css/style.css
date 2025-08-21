@@ -24,7 +24,8 @@ main {
     width: 100%;
     max-width: 900px;
     margin: 2rem auto;
-    background: #c7d2fe; /* #e0e7ff 진한 파스텔 블루 */
+    background: linear-gradient(90deg, #1e3a8a, #60a5fa);
+   /*  background: #c7d2fe; #e0e7ff 진한 파스텔 블루 */
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 4px 10px rgba(0,0,0,0.5);
@@ -32,9 +33,90 @@ main {
     }
 
 /* ===========================
-   ✅ 홈 화면 전용 레이아웃
+   ✅ 브랜드(로고 + 텍스트)
    =========================== */
-.main-home {
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.brand .logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: white;
+    padding: 4px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1),
+                0 0 8px rgba(79,110,247,0.6);
+}
+
+/* ===========================
+   ✅ 헤더 header
+   =========================== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #1e3a8a, #3b82f6);
+    padding: 1rem 2rem;
+    color: white;
+}
+
+.header nav {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.header nav span {
+    display: contents;
+}
+
+/* ===========================
+   ✅ 네비게이션 버튼
+   =========================== */
+.header nav a,
+.header nav button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 90px;
+    height: 42px;
+    box-sizing: border-box;
+
+    background: white;
+    color: #1e3a8a;
+    font-weight: 600;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+.header nav form {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+.header nav a:hover,
+.header nav button:hover {
+    background: #f0f4ff;
+    color: #2563eb;
+}
+
+
+/* ===========================
+   ✅ 홈 화면 전용 레이아웃 / home-page
+   =========================== */
+.home-container{
   position: relative;
   display: flex;
   justify-content: center;  /* 가로 중앙 */
@@ -164,86 +246,6 @@ footer {
 }
 .footer-container nav a:hover {
     text-decoration: underline;
-}
-
-/* ===========================
-   ✅ 브랜드(로고 + 텍스트)
-   =========================== */
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: white;
-}
-
-.brand .logo {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: white;
-    padding: 4px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1),
-                0 0 8px rgba(79,110,247,0.6);
-}
-
-/* ===========================
-   ✅ 헤더
-   =========================== */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: linear-gradient(90deg, #1e3a8a, #3b82f6);
-    padding: 1rem 2rem;
-    color: white;
-}
-
-.header nav {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-}
-
-.header nav span {
-    display: contents;
-}
-
-/* ===========================
-   ✅ 네비게이션 버튼
-   =========================== */
-.header nav a,
-.header nav button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 90px;
-    height: 42px;
-    box-sizing: border-box;
-
-    background: white;
-    color: #1e3a8a;
-    font-weight: 600;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 0.95rem;
-    transition: background 0.2s, color 0.2s;
-}
-
-.header nav form {
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-}
-
-.header nav a:hover,
-.header nav button:hover {
-    background: #f0f4ff;
-    color: #2563eb;
 }
 
 /* ===========================

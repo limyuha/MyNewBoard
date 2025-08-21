@@ -26,9 +26,10 @@ public class Article {  // 테이블과 매핑되는 그릇
         this.content = content;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "author_id", nullable = false)
-    private User author;  // User 테이블의 id와 연결되는 외래키 컬럼
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)  // N:1 (여러 글 → 한 사용자)
+    @JoinColumn(name = "author_id", nullable = false)  // 외래키 컬럼명
+    private User author;  // User 테이블의 id와 연결되는 외래키 컬럼, User 객체를 반환(롬복의 @getter으로 반환메서드 없어도 됨)
+    // article.getAuthor() 호출 시 User 객체를 반환
 
     // ✅ 작성일 추가
     @Column(nullable = false, updatable = false)

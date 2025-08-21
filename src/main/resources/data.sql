@@ -1,6 +1,6 @@
 -- User 더미 데이터
-INSERT INTO users (id, email, password, name, role)
-VALUES (1, 'test@example.com', '1234', '테스트유저', 'USER');
+INSERT INTO users (email, password, name, role)
+VALUES ('test@example.com', '1234', '테스트유저', 'USER');  -- id 값은 자동증가이기 때문에 안넣고 실행 id 값은 1
 
 -- Article 더미 데이터 (created_at 추가!)
 INSERT INTO article (id, title, content, author_id, created_at)
