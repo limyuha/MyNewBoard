@@ -55,7 +55,6 @@ textarea { resize: vertical; }
     font-size: 2rem;          /* 글자 크기 키우기 (필요시 2.2rem 정도로 더 키워도 OK) */
     font-weight: 700;         /* 두껍게 */
     letter-spacing: 1px;          /* 글자 간격 살짝 넓힘 */
-    margin-bottom: 1.5rem;    /* 아래 여백 */
     color: #ffffff;           /* 흰색으로 대비 */
     text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* 가독성 강조 */
 }
@@ -71,7 +70,67 @@ textarea { resize: vertical; }
   border-radius: 12px;
   margin: 1.5rem auto;
   max-width: 1000px;
-  height: 85%;
+  height: 80%;
+}
+
+.article-actions-primary-box {
+  display: flex;
+  justify-content: flex-end; /* 오른쪽 정렬 */
+  margin-bottom: 0.75rem;
+}
+
+.btn.primary {
+  position: relative;
+  display: inline-block;
+  padding: 14px 24px;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: transparent;
+  color: #111;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.2);
+  z-index: 1;
+}
+
+/* 바깥쪽 테두리 */
+.btn.primary::before {
+  content: "";
+  position: absolute;
+  inset: 0; /* 버튼 크기랑 똑같이 */
+  border-radius: 10px;
+  background: linear-gradient(90deg, #2563eb, #1e3a8a);
+  z-index: -2;
+}
+
+/* 안쪽 흰 배경 */
+.btn.primary::after {
+  content: "";
+  position: absolute;
+  inset: 3px; /* 딱 테두리만큼만 안쪽 */
+  border-radius: 8px;
+  background: #fff;
+  z-index: -1;
+}
+
+/* 호버 시 */
+.btn.primary:hover {
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  border: none;
+}
+
+.btn.primary:hover::before {
+  opacity: 0; /* 테두리 숨김 */
+}
+
+.btn.primary:hover::after {
+  inset: 0; /* 전체 배경으로 확장 */
+  border-radius: 10px;
+  background: linear-gradient(90deg, #1e3a8a, #1e40af);
 }
 
 /* ===========================
@@ -91,6 +150,7 @@ textarea { resize: vertical; }
 }
 .article-header .title {
   text-align: left;
+  padding-left: 10px;
 }
 
 /* ===========================
@@ -108,29 +168,10 @@ textarea { resize: vertical; }
   border-bottom: 1px solid #e5e7eb;
   align-items: center;
   background: #fff;
-  transition: background 0.2s ease;
 }
+
 .article-row:last-child {
   border-bottom: none;
-}
-
-/* Hover 효과 */
-.article-row:hover {
-  background: #c7d2fe;  /* Tailwind의 indigo-200 계열 */
-  transition: background 0.2s;
-}
-
-.article-row:hover .title a {
-  color: #333;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.article-row .title a:hover {
-  background: linear-gradient(90deg, #3b82f6, #2563eb);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 600; /* 강조 효과 */
 }
 
 /* 컬럼 공통 */
@@ -140,16 +181,23 @@ textarea { resize: vertical; }
 .article-row .title {
   text-align: left;
 }
-.article-row .title a {
-  color: #1e3a8a;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s;
+
+/* 제목 셀 내부 링크 확장 */
+.title-cell a {
+  display: block;              /* 링크가 블록 전체 차지 */
+  width: 100%;
+  height: 100%;
+  padding: 12px;               /* 셀 안쪽 패딩 */
+  color: inherit;              /* 부모 글자색 그대로 */
+  text-decoration: none;       /* 밑줄 제거 */
+  border-radius: 8px;  /* 버튼, 박스와 일관되게 */
 }
-.article-row .title a:hover {
-  color: #2563eb;
-  text-decoration: underline;
+
+/* 호버 효과 */
+.title-cell a:hover {
+  background: linear-gradient(90deg, #2563eb, #1e3a8a); /* 진한 블루톤 */
 }
+
 
 /* 날짜 */
 .article-date {
@@ -196,6 +244,7 @@ textarea { resize: vertical; }
 
 .page-btn:hover {
   border-image: linear-gradient(90deg, #3b82f6, #2563eb) 1;
+  border-image-slice: 1;
   color: #2563eb; /* 글씨색만 블루 */
 }
 
@@ -204,42 +253,4 @@ textarea { resize: vertical; }
     color: #fff;
     border: none;
     font-weight: 600;
-}
-
-/* ===========================
-   📌 반응형 (모바일 대응)
-   =========================== */
-@media (max-width: 768px) {
-  .article-header {
-    display: none; /* 모바일에서는 헤더 숨김 */
-  }
-
-  .article-row {
-    display: flex;
-    flex-direction: column;
-    padding: 12px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background: #fff;
-  }
-
-  .article-row .num {
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  .article-row .title {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  .article-row .writer {
-    font-size: 14px;
-    color: #444;
-    margin-bottom: 3px;
-  }
-  .article-row .date {
-    font-size: 13px;
-    color: #666;
-  }
 }

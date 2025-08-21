@@ -17,8 +17,8 @@
     <h1>📚 게시글 목록</h1>
 
     <!-- 새 글 작성 버튼 -->
-    <div sec:authorize="isAuthenticated()" style="text-align: right; margin-bottom: 1rem;">
-        <a href="/articles/new" class="btn primary">새글</a>
+    <div sec:authorize="isAuthenticated()" class="article-actions-primary-box">
+        <a href="/articles/new" class="btn primary">✍ 새 글</a>
     </div>
 
     <div class="article-board">
@@ -41,7 +41,7 @@
                 <div class="col num">
                     <span th:text="${a.id}"></span>
                 </div>
-                <div class="col title">
+                <div class="col title title-cell">
                     <a th:href="@{'/articles/' + ${a.id}}" th:text="${a.title}">제목</a>
                 </div>
                 <div class="col writer" th:text="${a.author.name}">글쓴이</div>

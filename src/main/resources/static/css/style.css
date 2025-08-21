@@ -108,8 +108,9 @@ main {
 
 .header nav a:hover,
 .header nav button:hover {
-    background: #f0f4ff;
-    color: #2563eb;
+    color: #fff;
+    transform: translateY(-2px) scale(1.05); /* ✅ 살짝 커짐 */
+    background: linear-gradient(90deg, #1e3a8a, #1e40af);
 }
 
 
@@ -247,59 +248,3 @@ footer {
 .footer-container nav a:hover {
     text-decoration: underline;
 }
-
-/* ===========================
-   ✅ 공통 버튼 스타일
-   =========================== */
-.btn {
-    display: inline-block;
-    padding: 0.6rem 1.2rem;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    transition: 0.2s;
-    text-align: center
-}
-
-.btn.primary { background: #4f6ef7; color: white; }
-.btn.primary:hover { background: #3b56d9; }
-
-.btn.secondary { background: #e0e7ff; color: #334155; }
-.btn.secondary:hover { background: #c7d2fe; }
-
-.btn.danger { background: #f87171; color: white; }
-.btn.danger:
-
-
-.form-actions {
-    display: flex;
-    justify-content: center;   /* 📌 버튼들을 가운데 정렬 */
-    gap: 0.8rem;
-    margin-top: 1.2rem;
-}
-
-/* 소셜 로그인 버튼 전용 */
-.social-login {
-    margin-top: 1.5rem;        /* 위 버튼 그룹과 간격 */
-    display: flex;
-    justify-content: center;   /* 📌 가운데 정렬 */
-}
-
-.btn.google {
-    background: #ea4335;
-    color: white;
-    font-weight: 600;
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
-    min-width: 250px;          /* 📌 일정한 크기 보장 */
-    text-align: center;
-    transition: background 0.2s;
-}
-
-.btn.google:hover {
-    background: #c1351d;
-}
-
-
