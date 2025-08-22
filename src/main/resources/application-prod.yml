@@ -16,7 +16,7 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: validate   # 개발시엔 update, 운영/배포시엔 validate 추천
+      ddl-auto: update # 개발시엔 update, 운영/배포시엔 validate 추천
     show-sql: false
     properties:
       hibernate:
