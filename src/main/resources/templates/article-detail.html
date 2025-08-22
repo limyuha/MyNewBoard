@@ -6,9 +6,11 @@
     <title th:text="${article.title}">게시글</title>
     <meta name="_csrf" th:content="${_csrf.token}">
     <meta name="_csrf_header" th:content="${_csrf.headerName}">
+
     <link rel="stylesheet" th:href="@{/css/normalize.css}">
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/article.css}">
+    <link rel="stylesheet" th:href="@{/css/comment.css}">
 </head>
 <body>
 <div th:replace="~{header :: header}"></div>
@@ -27,10 +29,26 @@
             </div>
         </div>
     </section>
+
+    <!-- 댓글 섹션 -->
+    <section id="comments">
+        <h3>💬 댓글</h3>
+
+        <!-- 댓글 목록 -->
+        <ul id="comment-list" class="comment-list"></ul>
+
+        <!-- 댓글 작성 폼 -->
+        <form id="comment-form">
+            <textarea id="content" placeholder="댓글 내용" required></textarea>
+            <button type="submit">작성하기</button>
+        </form>
+    </section>
 </main>
 
 <div th:replace="~{footer :: footer}"></div>
 
+<!-- JS 로드 -->
 <script src="/js/article.js" defer></script>
+<script src="/js/comment.js" defer></script>
 </body>
 </html>

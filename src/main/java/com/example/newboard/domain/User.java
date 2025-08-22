@@ -3,8 +3,14 @@ package com.example.newboard.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity @Table(name="users", uniqueConstraints=@UniqueConstraint(columnNames="email"))
-@Getter @NoArgsConstructor @AllArgsConstructor @Builder
+@Entity
+// DB 매핑 시 테이블 이름을 "users"로 지정
+// 유니크 제약조건 : 동일한 이메일을 가진 유저는 2명 이상 들어갈 수 없음.
+@Table(name="users", uniqueConstraints=@UniqueConstraint(columnNames="email"))
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class User {
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
