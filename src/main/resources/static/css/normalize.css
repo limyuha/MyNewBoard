@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-@import './font/pretendard.css';
+/* @import './font/pretendard.css'; */
 
 /* 한글 */
 html, div, span, h1, h2, h3, h4, h5, h6, p, a, em, img, button, input, dl, dt, dd, ul, ol, li, fieldset, form, label, legend, article, aside, canvas, details, embed, figure, figcaption, footer, top_wrap, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {margin:0;padding:0;border:0;font-size:1em;font:inherit;/* vertical-align:baseline; */}

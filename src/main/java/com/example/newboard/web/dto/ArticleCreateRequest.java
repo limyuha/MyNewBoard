@@ -9,7 +9,6 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 public class ArticleCreateRequest {
-
     @NotBlank(message = "제목은 필수입니다.")
     private String title;
 

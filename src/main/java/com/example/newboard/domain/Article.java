@@ -2,6 +2,8 @@ package com.example.newboard.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -23,7 +25,11 @@ import java.util.List;
 
 // 빌더 패턴을 자동 생성해줌.
 // 복잡한 생성자 대신 체이닝으로 객체를 만들 수 있음.
+@Setter
 @Builder
+
+// auditing 이벤트 리스너 (날짜)
+@EntityListeners(AuditingEntityListener.class)
 public class Article {  // 테이블과 매핑되는 그릇
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,6 +41,10 @@ public class Article {  // 테이블과 매핑되는 그릇
     @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
+    @Column  // 조회수
+    @Builder.Default  // @Builder는 필드 초기화 = 0L을 무시하기 때문에 기본값 세팅 필요
+    private Long views = 0L;
+
     public void update(String title, String content) {
         this.title = title;
         this.content = content;
@@ -45,8 +55,12 @@ public class Article {  // 테이블과 매핑되는 그릇
     private User author;  // User 테이블의 id와 연결되는 외래키 컬럼, User 객체를 반환(롬복의 @getter으로 반환메서드 없어도 됨
     // article.getAuthor() 호출 시 User 객체를 반환
 
-    // ✅ 작성일 추가
-    @Column(nullable = false, updatable = false)
+//    // ✅ 작성일 추가
+//    @Column(nullable = false, updatable = false)
+//    private LocalDateTime createdAt;
+
+    @CreatedDate   // 작성일, 생성 시 자동 값 주입
+    @Column(updatable = false)
     private LocalDateTime createdAt;
 
     // 엔티티가 저장될 때 자동으로 시간 넣기

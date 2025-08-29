@@ -16,7 +16,8 @@
 <main class="container">
     <section class="form-box">
         <h1>📝 새 글 작성</h1>
-        <form method="post" action="/articles">
+<!--        <form method="post" action="/articles">-->
+            <form>
             <input type="hidden" id="article-id" th:value="${article} != null ? ${article.id} : ''"/>
 
             <div class="form-group">
@@ -39,6 +40,7 @@
 
 <div th:replace="~{footer :: footer}"></div>
 
+<script src="/js/csrf.js" defer></script>
 <script src="/js/article.js" defer></script>
 </body>
 </html>

@@ -1,10 +1,3 @@
-function csrf() {
-  const token = document.querySelector('meta[name="_csrf"]')?.content;
-  const header = document.querySelector('meta[name="_csrf_header"]')?.content || 'X-CSRF-TOKEN';
-  if (!token) console.warn('CSRF token not found in meta tags.');
-  return { header, token };
-}
-
 // 삭제
  const deleteButton = document.getElementById('delete-btn');
  if (deleteButton) {
@@ -78,6 +71,8 @@ function csrf() {
 //    });
 
     const { header, token } = csrf();
+    console.log("CSRF header:", header, "token:", token);  // 디버그 로그
+
         const res = await fetch('/api/articles', {
           method: 'POST',
           headers: {

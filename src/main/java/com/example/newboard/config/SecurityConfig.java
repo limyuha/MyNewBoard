@@ -4,6 +4,7 @@ import com.example.newboard.service.security.CustomOidcUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,6 +14,7 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 @RequiredArgsConstructor
+@EnableJpaAuditing  // JPA Auditing 기능 켜기, JPA가 자동으로 넣어주도록 함(날짜)
 public class SecurityConfig {
     private final CustomOidcUserService customOidcUserService;
 

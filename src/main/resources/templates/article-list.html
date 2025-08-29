@@ -45,6 +45,7 @@
                     <a th:href="@{'/articles/' + ${a.id}}" th:text="${a.title}">제목</a>
                 </div>
                 <div class="col writer" th:text="${a.author.name}">글쓴이</div>
+                <div class="col views" th:text="${a.views}">조회수</div>
                 <div class="col date">
                     <span class="article-date"
                           th:text="${#temporals.format(a.createdAt, 'yyyy-MM-dd HH:mm')}"></span>

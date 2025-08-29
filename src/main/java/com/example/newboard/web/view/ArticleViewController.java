@@ -38,7 +38,8 @@ public class ArticleViewController {
 
     @GetMapping("/articles/{id}")
     public String detail(@PathVariable Long id, Model model, Authentication auth){
-        var article = articleService.findById(id);
+        var article = articleService.viewArticle(id);
+
         model.addAttribute("article", article);
         boolean isOwner = auth != null && article.getAuthor().getEmail().equals(auth.getName());
         model.addAttribute("isOwner", isOwner);
@@ -51,23 +52,4 @@ public class ArticleViewController {
         model.addAttribute("article", article);
         return "article-edit";
     }
-
-//    @PostMapping("/articles")  // 데이터 줄때 가져와? (method="post")
-//    public String create(ArticleCreateRequest req) {
-//        articleService.create(req);
-//        return "redirect:/articles";
-//    }
-
-//    @PostMapping("/articles/{id}/edit")
-//    public String edit(@PathVariable Long id, ArticleUpdateRequest req){
-//        articleService.update(id, req);
-//        return "redirect:/articles/" + id; // 수정 후 상세로 이동
-//    }
-
-//    @PostMapping("/articles/{id}/delete")
-//    public String delete(@PathVariable Long id) {
-//        articleService.delete(id);
-//        return "redirect:/articles";
-//    }
-
 }
