@@ -27,6 +27,7 @@
             <div class="col num">번호</div>
             <div class="col title">제목</div>
             <div class="col writer">글쓴이</div>
+            <div class="col views">조회수</div>
             <div class="col date">작성일</div>
         </div>
 
@@ -52,20 +53,20 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- 페이지네이션 -->
-        <div class="pagination-container">
-            <a th:if="${articles.hasPrevious()}"
-               th:href="@{/articles(page=${articles.number - 1}, size=${articles.size})}" class="page-btn">이전</a>
+    <!-- 페이지네이션 -->
+    <div class="pagination-container">
+        <a th:if="${articles.hasPrevious()}"
+           th:href="@{/articles(page=${articles.number - 1}, size=${articles.size})}" class="page-btn">이전</a>
 
-            <a th:each="pageNum : ${#numbers.sequence(0, articles.totalPages - 1)}"
-               th:href="@{/articles(page=${pageNum}, size=${articles.size})}"
-               th:text="${pageNum + 1}"
-               th:class="'page-btn ' + (${pageNum == articles.number} ? 'active' : '')"></a>
+        <a th:each="pageNum : ${#numbers.sequence(0, articles.totalPages - 1)}"
+           th:href="@{/articles(page=${pageNum}, size=${articles.size})}"
+           th:text="${pageNum + 1}"
+           th:class="'page-btn ' + (${pageNum == articles.number} ? 'active' : '')"></a>
 
-            <a th:if="${articles.hasNext()}"
-               th:href="@{/articles(page=${articles.number + 1}, size=${articles.size})}" class="page-btn">다음</a>
-        </div>
+        <a th:if="${articles.hasNext()}"
+           th:href="@{/articles(page=${articles.number + 1}, size=${articles.size})}" class="page-btn">다음</a>
     </div>
 </main>
 

@@ -12,20 +12,29 @@
     <link rel="stylesheet" th:href="@{/css/article.css}">
     <link rel="stylesheet" th:href="@{/css/comment.css}">
 </head>
-<body>
+<body class="article-detail-page">
 <div th:replace="~{header :: header}"></div>
 
 <main class="container">
+    <!-- 메시지 박스 -->
+    <div id="msg-box"></div>
+
     <section class="article-box">
         <h1 class="article-title" th:text="${article.title}">제목</h1>
         <input type="hidden" id="article-id" th:value="${article.id}">
         <article class="article-content" th:text="${article.content}">내용</article>
 
         <div class="article-actions">
-            <a href="/articles" class="btn secondary">← 목록</a>
-            <div th:if="${isOwner}">
-                <a th:href="@{'/articles/' + ${article.id} + '/edit'}" id="modify-btn-link" class="btn primary">수정</a>
-                <button id="delete-btn" class="btn danger">삭제</button>
+            <!-- 왼쪽: 목록 -->
+            <div class="article-actions-left">
+                <a href="/articles" class="btn primary">← 목록</a>
+            </div>
+
+            <!-- 오른쪽: 수정, 삭제 -->
+            <div class="article-actions-right" th:if="${isOwner}">
+                <a th:href="@{'/articles/' + ${article.id} + '/edit'}"
+                   id="modify-btn-link" class="btn primary">수정</a>
+                <button id="delete-btn" class="btn primary">삭제</button>
             </div>
         </div>
     </section>

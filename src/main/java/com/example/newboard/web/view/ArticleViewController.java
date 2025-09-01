@@ -23,7 +23,7 @@ public class ArticleViewController {
 
     // 글 목록 (페이징 + 최신순)
     @GetMapping("/articles")
-    public String list(@PageableDefault(size = 5, sort = "createdAt", direction = Sort.Direction.DESC)
+    public String list(@PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC)
                            Pageable pageable, Model model) {
 
         Page<Article> articles = articleService.findAll(pageable);

@@ -1,4 +1,28 @@
 /* ===========================
+   메시지 박스
+   =========================== */
+
+#msg-box {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  display: none; /* 기본은 숨김 */
+}
+
+#msg-box.success {
+  background-color: #e6ffed;
+  color: #2d7a32;
+  border: 1px solid #2d7a32;
+}
+
+#msg-box.error {
+  background-color: #ffe6e6;
+  color: #b32d2d;
+  border: 1px solid #b32d2d;
+}
+
+/* ===========================
    ✅ 공통 카드 레이아웃 (상세/작성 박스만)
    =========================== */
 .article-box,
@@ -27,6 +51,10 @@
     line-height: 1.6;
     font-size: 1rem;
     color: #444;
+
+  word-wrap: break-word;     /* 단어가 너무 길면 강제로 줄바꿈 */
+  word-break: break-word;    /* 줄바꿈 강제 */
+  white-space: pre-wrap;     /* 공백/줄바꿈 유지 + 자동 줄바꿈 */
 }
 
 /* 글 작성/수정 form */
@@ -61,16 +89,22 @@ textarea { resize: vertical; }
 
 /* 게시판 전체 영역 */
 .article-board {
-  display: flex;
-  flex-direction: column;   /* 위 → 아래 정렬 */
-  justify-content: space-between; /* 리스트 위 / 페이징 아래 */
+  /*display: flex;
+  flex-direction: column;    위 → 아래 정렬
+  justify-content: space-between;  리스트 위 / 페이징 아래
 
   overflow: hidden;
   background: linear-gradient(to bottom, #ffffff, #f8faff);
   border-radius: 12px;
   margin: 1.5rem auto;
   max-width: 1000px;
-  height: 80%;
+  height: 80%;*/
+
+    background: linear-gradient(to bottom, #ffffff, #f8faff);
+    border-radius: 12px;
+    margin: 1.5rem auto 0 auto; /* 아래쪽 여백 제거 */
+    max-width: 1000px;
+    overflow: hidden;
 }
 
 .article-actions-primary-box {
@@ -137,12 +171,9 @@ textarea { resize: vertical; }
    📌 헤더 (번호 / 제목 / 글쓴이 / 작성일)
    =========================== */
 .article-header {
-  display: grid;
-  grid-template-columns: 80px 1fr 160px 180px; /* 번호 / 제목 / 글쓴이 / 작성일 */
   background: linear-gradient(90deg, #3b82f6, #1e3a8a);
   color: #fff;
   font-weight: bold;
-  padding: 12px 16px;
 }
 
 .article-header .col {
@@ -162,11 +193,7 @@ textarea { resize: vertical; }
 }
 
 .article-row {
-  display: grid;
-  grid-template-columns: 80px 1fr 160px 180px;
-  padding: 12px 16px;
   border-bottom: 1px solid #e5e7eb;
-  align-items: center;
   background: #fff;
 }
 
@@ -182,15 +209,35 @@ textarea { resize: vertical; }
   text-align: left;
 }
 
-/* 제목 셀 내부 링크 확장 */
+/* grid 정의 (열 고정 + 가변 조합) */
+.article-header,
+.article-row {
+  display: grid;
+  grid-template-columns: 80px minmax(200px, 1fr) 150px 80px 160px;
+  /* 번호(80px) + 제목(최소200px ~ 가변) + 글쓴이(150px) + 조회수(80px) + 작성일(160px) */
+  align-items: center;
+  padding: 12px 16px;
+}
+
+/* 제목 칸 */
+.title-cell {
+  overflow: hidden;   /* 부모 단에서 잘리도록 */
+}
+
+/* 제목 내부 a 태그 */
 .title-cell a {
-  display: block;              /* 링크가 블록 전체 차지 */
-  width: 100%;
-  height: 100%;
-  padding: 12px;               /* 셀 안쪽 패딩 */
-  color: inherit;              /* 부모 글자색 그대로 */
-  text-decoration: none;       /* 밑줄 제거 */
-  border-radius: 8px;  /* 버튼, 박스와 일관되게 */
+  display: block;        /* 블록화 → 부모 셀 너비 다 씀 */
+  width: 100%;           /* 제목 칸 전체 클릭 가능 */
+  max-width: 100%;       /* 부모 grid 셀 너비에 맞춤 */
+  white-space: nowrap;   /* 줄바꿈 X */
+  overflow: hidden;      /* 넘치면 숨김 */
+  text-overflow: ellipsis; /* ... 처리 */
+
+  padding: 6px 8px;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 6px;
+  box-sizing: border-box;
 }
 
 /* 호버 효과 */
@@ -221,14 +268,15 @@ textarea { resize: vertical; }
 /* ===========================
    📌 페이지네이션
    =========================== */
+/* 페이지네이션 (board 밖, container 안) */
 .pagination-container {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-  padding: 12px 0;
-  margin-top: auto;   /* 자동으로 하단으로 밀림 */
-  margin-bottom: 12px;   /* 하단과 살짝 띄우기 */
+  padding: 16px 0;
+  max-width: 1000px;   /* 📌 board와 같은 너비 */
+  margin: 0 auto;      /* 가운데 정렬 */
 }
 
 .page-btn {
@@ -254,3 +302,24 @@ textarea { resize: vertical; }
     border: none;
     font-weight: 600;
 }
+
+
+/* 상세 페이지(article-view) 버튼 */
+.article-detail-page .article-actions {
+  display: flex;
+  justify-content: space-between; /* 왼쪽: 목록 / 오른쪽: 수정+삭제 */
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+/* 왼쪽(목록), 오른쪽(수정+삭제) 그룹 */
+.article-detail-page .article-actions-left {
+  flex: 1;
+}
+
+.article-detail-page .article-actions-right {
+  display: flex;
+  gap: 0.5rem;
+}
+
+
