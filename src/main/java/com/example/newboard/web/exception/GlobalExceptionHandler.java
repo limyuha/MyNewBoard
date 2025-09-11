@@ -13,28 +13,28 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    // 📌 게시글 없음
+    // 📌 게시글 없음 404 NOT FOUND
     @ExceptionHandler(ArticleNotFoundException.class)
     public ResponseEntity<ApiResponse<Void>> handleArticleNotFound(ArticleNotFoundException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(ApiResponse.error(e.getMessage()));
     }
 
-    // 📌 사용자 없음
+    // 📌 사용자 없음 404 NOT FOUND
     @ExceptionHandler(UsernameNotFoundException.class)
     public ResponseEntity<ApiResponse<Void>> handleUserNotFound(UsernameNotFoundException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(ApiResponse.error(e.getMessage()));
     }
 
-    // 📌 권한 없음
+    // 📌 권한 없음 403 FORBIDDEN
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<ApiResponse<Void>> handleAccessDenied(AccessDeniedException e) {
         return ResponseEntity.status(HttpStatus.FORBIDDEN)
                 .body(ApiResponse.error(e.getMessage()));
     }
 
-    // 📌 잘못된 요청 (예: @Valid 검증 실패)
+    // 📌 잘못된 요청 (예: @Valid 검증 실패) 400 BAD REQUEST
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiResponse<Void>> handleValidation(MethodArgumentNotValidException e) {
         String message = e.getBindingResult().getAllErrors().get(0).getDefaultMessage();
@@ -42,7 +42,7 @@ public class GlobalExceptionHandler {
                 .body(ApiResponse.error(message));
     }
 
-    // 📌 그 외 예외 (500)
+    // 📌 그 외 예외 (500) 500 INTERNAL SERVER ERRO
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponse<Void>> handleGeneral(Exception e) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
